@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/item_size"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="@dimen/spacing_normal_16">
+    <ImageView
+        android:id="@+id/iv_avatar_single"
+        android:layout_width="@dimen/avatar_item_size"
+        android:layout_height="@dimen/avatar_item_size"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/ic_bot"
+        />
+    <View
+        android:id="@+id/sv_indicator"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@id/tv_title_single"
+        android:background="@drawable/bg_indicator"
+        />
+    <TextView
+        android:id="@+id/tv_title_single"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Bender"
+        android:textColor="@color/colorPrimary"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="14sp"
+        android:layout_toRightOf="@id/iv_avatar_single"
+        android:layout_marginLeft="@dimen/spacing_normal_16"
+        android:layout_marginRight="@dimen/spacing_normal_16"
+        />
+    <TextView
+        android:id="@+id/tv_desctiption_single"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Bot description"
+        android:textSize="14sp"
+        android:layout_toRightOf="@id/iv_avatar_single"
+        android:layout_marginLeft="@dimen/spacing_normal_16"
+        android:layout_marginRight="@dimen/spacing_normal_16"
+        android:layout_below="@id/tv_title_single"
+
+        />
+
+
+
+
+</RelativeLayout>

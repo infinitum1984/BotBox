@@ -1,4 +1,4 @@
-package com.empty.botbox.repositories
+package com.empty.botbox.repository
 
 import android.content.SharedPreferences
 import android.preference.PreferenceManager

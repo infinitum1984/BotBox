@@ -10,14 +10,9 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.IBinder
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
-import com.empty.botbox.models.Bot
-import com.empty.botbox.repositories.BotsRepository
-import com.pengrad.telegrambot.TelegramBot
-import com.pengrad.telegrambot.UpdatesListener
-import com.pengrad.telegrambot.request.SendMessage
+import com.empty.botbox.repository.BotsRepository
 
 
 class BotsServer : Service() {

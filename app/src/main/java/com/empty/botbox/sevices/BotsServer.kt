@@ -13,6 +13,8 @@ import android.os.IBinder
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
+import com.empty.botbox.models.Bot
+import com.empty.botbox.repositories.BotsRepository
 import com.pengrad.telegrambot.TelegramBot
 import com.pengrad.telegrambot.UpdatesListener
 import com.pengrad.telegrambot.request.SendMessage
@@ -54,25 +56,16 @@ class BotsServer : Service() {
     @SuppressLint("WrongConstant")
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
-        val bot = TelegramBot("572722769:AAHSBhzTaW9ZHhnVWR1hi8wD1EvpAlqlcMk")// @sectaa_bot:
-        bot.setUpdatesListener {
-            Log.d("BotsServer",it[0].message().text())
-            val chatId = it[0].message().chat().id();
-            val response = bot.execute(SendMessage(chatId,"you send: ${it[0].message().text()}"))
-            UpdatesListener.CONFIRMED_UPDATES_ALL
-        }
-
-        val bot2 = TelegramBot("556162227:AAFBE3vdWdsBxIPzQan-hXt4LYsBkcrnUxc")
-        bot2.setUpdatesListener {
-            Log.d("BotsServer",it[0].message().text())
-            val chatId = it[0].message().chat().id();
-            val response = bot2.execute(SendMessage(chatId,"(bot2) you send: ${it[0].message().text()}"))// @my_testtt_bot:
-            UpdatesListener.CONFIRMED_UPDATES_ALL
+        val bots = BotsRepository.getBots()
+        for (bot in bots){
+            bot.startMe()
         }
 
 
         return super.onStartCommand(intent, flags, startId)
     }
+
+
     override fun onBind(intent: Intent?): IBinder? {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

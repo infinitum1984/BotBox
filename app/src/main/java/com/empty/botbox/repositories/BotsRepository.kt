@@ -16,10 +16,10 @@ object BotsRepository {
     }
     fun getBots():List<Bot>{
         val bots = arrayListOf<Bot>()
-        for (i in 1..20){
-            bots.add(Bot(token = "SIMPLETOKEN", name = "BOT_$i", description = if (i%2==0) "test discription $i" else "",
-                isOnline = if (i%3==0) true else false))
-        }
+        bots.add(Bot("1345490424:AAHriw9UacTDZ3x5rMEb8pWWruZMBUiU7Z8","BotBox1"))
+        bots.add(Bot("572722769:AAHSBhzTaW9ZHhnVWR1hi8wD1EvpAlqlcMk","SektaBot"))
+        bots.add(Bot("556162227:AAFBE3vdWdsBxIPzQan-hXt4LYsBkcrnUxc","MyBot"))
+
         return bots
     }
     private fun putValue(pair: Pair<String, Any>) = with(prefs.edit()){

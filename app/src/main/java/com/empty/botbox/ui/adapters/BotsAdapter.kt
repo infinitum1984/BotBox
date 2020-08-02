@@ -9,7 +9,7 @@ import com.empty.botbox.models.Bot
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_bot_single.*
 
-class BotsAdapter:RecyclerView.Adapter<BotsAdapter.SingleBotViewHolder>() {
+class BotsAdapter(val listener:(Bot) -> Unit):RecyclerView.Adapter<BotsAdapter.SingleBotViewHolder>() {
 
     var items:List<Bot> = listOf()
 
@@ -22,7 +22,7 @@ class BotsAdapter:RecyclerView.Adapter<BotsAdapter.SingleBotViewHolder>() {
     override fun getItemCount(): Int =items.size
 
     override fun onBindViewHolder(holder: SingleBotViewHolder, position: Int) {
-        holder.bind(items[position])
+        holder.bind(items[position],listener)
     }
     fun updateData(list_bots:List<Bot>){
         items=list_bots
@@ -30,10 +30,13 @@ class BotsAdapter:RecyclerView.Adapter<BotsAdapter.SingleBotViewHolder>() {
     }
     class SingleBotViewHolder(override val containerView: View):RecyclerView.ViewHolder(containerView), LayoutContainer {
 
-        fun bind(item :Bot){
+        fun bind(item :Bot,listener: (Bot) -> Unit){
             tv_title_single.text=item.name
             tv_desctiption_single.text=item.description
             sv_indicator.visibility=if (item.isOnline) View.VISIBLE else View.GONE
+            containerView.setOnClickListener {
+                listener.invoke(item)
+            }
         }
     }
 }

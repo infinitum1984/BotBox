@@ -1,4 +1,4 @@
-package com.empty.botbox.ui.adapters
+package com.empty.botbox.adapters
 
 import android.view.LayoutInflater
 import android.view.View

@@ -1,11 +1,10 @@
-package com.empty.botbox.viewmodels
+package com.empty.botbox.viewmodel
 
-import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.empty.botbox.models.Bot
-import com.empty.botbox.repositories.BotsRepository
+import com.empty.botbox.repository.BotsRepository
 
 class BotsViewModel: ViewModel() {
     fun getBotsData():LiveData<List<Bot>>{

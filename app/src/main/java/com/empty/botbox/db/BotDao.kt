@@ -1,12 +1,10 @@
-package com.empty.botbox.dp
+package com.empty.botbox.db
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.empty.botbox.models.Bot
-import retrofit2.http.DELETE
 
 @Dao
 interface BotDao {
@@ -20,5 +18,5 @@ interface BotDao {
     fun deleteAll()
 
     @Query("SELECT * FROM bots")
-    fun getBots(): MutableLiveData<List<Bot>>
+    fun getBots(): LiveData<List<Bot>>
 }

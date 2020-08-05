@@ -12,7 +12,6 @@ import android.os.Build
 import android.os.IBinder
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
-import com.empty.botbox.repository.BotsRepository
 
 
 class BotsServer : Service() {
@@ -51,10 +50,10 @@ class BotsServer : Service() {
     @SuppressLint("WrongConstant")
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
-        val bots = BotsRepository.getBots()
-        for (bot in bots){
-            bot.startMe()
-        }
+//        val bots = BotsRepository(App.instances).getBots()?.value
+//        for (bot in bots){
+//            bot.startMe()
+//        }
 
 
         return super.onStartCommand(intent, flags, startId)

@@ -1,39 +1,42 @@
 package com.empty.botbox.repository
 
 import android.content.SharedPreferences
+import android.database.Observable
 import android.preference.PreferenceManager
+import androidx.lifecycle.MutableLiveData
 import com.empty.botbox.App
+import com.empty.botbox.dp.BotDao
 import com.empty.botbox.models.Bot
+import com.empty.botbox.models.BotResponse
+import com.empty.botbox.network.BotApiServices
+import java.util.*
+import javax.inject.Inject
 
-object BotsRepository {
-    private val prefs: SharedPreferences by lazy{
-        val ctx = App.getApplicationContext()
-        PreferenceManager.getDefaultSharedPreferences(ctx)
-    }
-    fun saveBots(bots: List<Bot>){
-        //TODO save bots
+class BotsRepository {
+    val botDao: BotDao
+    val apiServices: BotApiServices
 
+    @Inject
+    constructor( botDao: BotDao,
+                 apiServices: BotApiServices){
+        this.botDao=botDao
+        this.apiServices=apiServices
     }
-    fun getBots():List<Bot>{
-        val bots = arrayListOf<Bot>()
-        bots.add(Bot("1345490424:AAHriw9UacTDZ3x5rMEb8pWWruZMBUiU7Z8","BotBox1"))
-        bots.add(Bot("572722769:AAHSBhzTaW9ZHhnVWR1hi8wD1EvpAlqlcMk","SektaBot"))
-        bots.add(Bot("556162227:AAFBE3vdWdsBxIPzQan-hXt4LYsBkcrnUxc","MyBot"))
 
-        return bots
+    fun insertBot(bot:Bot){
+        botDao.insertBot(bot)
     }
-    private fun putValue(pair: Pair<String, Any>) = with(prefs.edit()){
-        val key = pair.first
-        val value = pair.second
-        when(value){
-            is String -> putString(key, value)
-            is Int -> putInt(key, value)
-            is Long ->putLong(key, value)
-            is Boolean ->putBoolean(key, value)
-            is Float ->putFloat(key, value)
+    fun getBots(): MutableLiveData<List<Bot>> {
+//        val bots = arrayListOf<Bot>()
+//        bots.add(Bot("1345490424:AAHriw9UacTDZ3x5rMEb8pWWruZMBUiU7Z8", "BotBox1"))
+//        bots.add(Bot("572722769:AAHSBhzTaW9ZHhnVWR1hi8wD1EvpAlqlcMk", "SektaBot"))
+//        bots.add(Bot("556162227:AAFBE3vdWdsBxIPzQan-hXt4LYsBkcrnUxc", "MyBot"))
 
-            else-> kotlin.error("Error")
-        }
-        commit()
+        return botDao.getBots()
     }
+    fun deleteAll(){
+        botDao.deleteAll()
+    }
+
+
 }

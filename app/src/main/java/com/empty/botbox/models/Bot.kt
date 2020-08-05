@@ -1,20 +1,24 @@
 package com.empty.botbox.models
 
 import android.util.Log
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
 import com.pengrad.telegrambot.TelegramBot
 import com.pengrad.telegrambot.UpdatesListener
 import com.pengrad.telegrambot.model.Update
 import com.pengrad.telegrambot.request.SendMessage
-
-class Bot(
+@Entity(tableName = "bots")
+ class Bot(
     val token:String,
     val name:String,
     var description:String="",
     var isOnline:Boolean=false
           ):UpdatesListener{
-    init {
+    @PrimaryKey(autoGenerate = true)
+    private var id:Int=0
 
-    }
+    @Ignore
     lateinit var MyTeleBot:TelegramBot
 
     fun startMe(){

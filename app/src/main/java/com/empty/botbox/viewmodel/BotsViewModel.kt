@@ -12,7 +12,7 @@ class BotsViewModel: ViewModel() {
         data.value=loadBots()
         return data
     }
-    val botsRepository=BotsRepository
+    val botsRepository=BotsRepository()
     private fun loadBots():List<Bot>{
         val bots = botsRepository.getBots()
         return bots
